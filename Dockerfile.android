@@ -59,6 +59,10 @@ RUN apt-get update -qq
 && apt-get update -qq 
 && apt-get install -y -qq gh 
 && gh --version 
+&& rm -rf /var/lib/apt/lists/* /tmp/githubcli-archive.key 
+&& apt-get update -qq 
+&& apt-get install -y -qq gh 
+&& gh --version 
 && rm -rf /var/lib/apt/lists/* /tmp/githubcli-archive.key
 
 # -----------------------------------------------------------------------------
