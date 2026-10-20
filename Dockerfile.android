@@ -50,18 +50,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #     release tagged web-build-output-<run_id>. Without gh, the publish
 #     step would fail with "gh: not found" inside the container.
 # -----------------------------------------------------------------------------
-RUN apt-get update -qq 
-&& apt-get install -y -qq curl ca-certificates gnupg 
-&& mkdir -p /etc/apt/keyrings 
-&& curl -fsSL https://cli.github.com/packages/githubcli-archive.key -o /tmp/githubcli-archive.key 
-&& gpg --dearmor -o /etc/apt/keyrings/githubcli-archive-keyring.gpg /tmp/githubcli-archive.key 
-&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list 
-&& apt-get update -qq 
-&& apt-get install -y -qq gh 
-&& gh --version 
-&& rm -rf /var/lib/apt/lists/* /tmp/githubcli-archive.key 
-&& apt-get update -qq 
-&& apt-get install -y -qq gh 
+RUN apt-get update -qq && apt-get install -y -qq curl ca-certificates gnupg && mkdir -p /etc/apt/keyrings && curl -fsSL https://cli.github.com/packages/githubcli-archive.key -o /tmp/githubcli-archive.key && gpg --dearmor -o /etc/apt/keyrings/githubcli-archive-keyring.gpg /tmp/githubcli-archive.key && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list && apt-get update -qq && apt-get install -y -qq gh && gh --version && rm -rf /var/lib/apt/lists/* /tmp/githubcli-archive.key
 && gh --version 
 && rm -rf /var/lib/apt/lists/* /tmp/githubcli-archive.key
 
